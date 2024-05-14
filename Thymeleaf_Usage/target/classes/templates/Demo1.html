@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- to enable thymeleaf  -->
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+			<h1>Demo.html</h1>
+			<!-- <h1><em th:text="${a1}"></em></h1> -->
+			
+			<!-- to access data from resp object -->
+			<!-- <h1>Username = <strong th:text="${userInfo.name}"></strong></h1>
+			<h1>ID = <mark th:text="${userInfo.id}"></mark></h1> -->
+			
+			<!-- to access data from list -->
+			<!-- <h1 th:each="name : ${studentNames}">
+				<mark th:text="${name}"></mark>
+			</h1> -->
+			
+			<!-- to access object from list -->
+			<table>
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+			</tr>
+			<tr th:each="user : ${usersObject}">
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+			</tr>
+			</table>
+</body>
+</html>
+
+
+
+
+
+
+
