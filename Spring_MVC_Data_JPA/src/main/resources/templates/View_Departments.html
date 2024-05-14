@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Departments</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+	rel="stylesheet"></link>
+<style>
+table, td {
+	border: 3px solid black;
+	font-size: 20px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+
+	<center>
+		<h3 style="color: green" th:if="${msg != null}" th:text="${msg}"></h3>
+		<h1>Department Details</h1>
+		<h2>
+			<a th:href="@{/app/addDepartment}">Add Department</a>
+		</h2>
+		<table>
+			<tr>
+				<td>
+				<a th:if="${columnName} == 'id'"
+				   th:href="@{/dept/page/{pageNum}/{columnName}/{direction} 
+				   (columnName = 'id', direction = ${revDirection}, pageNum = ${pageNumber})}">
+					Dept Id 
+				</a>
+				<a th:if="${columnName} != 'id'"
+				   th:href="@{/dept/page/{pageNum}/{columnName}/{direction} 
+				   (columnName = 'id', direction = ${direction}, pageNum = ${pageNumber})}">
+					Dept Id 
+				</a>
+			
+					<i th:if="${columnName} == 'id'" 
+					th:class="${direction} == 'ascending' ? 'fa-solid fa-sort-down' : 'fa-solid fa-sort-up'"></i>
+				</td>
+				<td>
+				<a th:if="${columnName} == 'departmentName'"
+				   th:href="@{/dept/page/{pageNum}/{columnName}/{direction} 
+				   (columnName = 'departmentName', direction = ${revDirection}, pageNum = ${pageNumber})}">
+					Dname
+				</a>
+				<a th:if="${columnName} != 'departmentName'"
+				   th:href="@{/dept/page/{pageNum}/{columnName}/{direction} 
+				   (columnName = 'departmentName', direction = ${direction}, pageNum = ${pageNumber})}">
+					Dname
+				</a>
+				
+					<i th:if="${columnName} == 'departmentName'" th:class="${direction} == 'ascending' ? 'fa-solid fa-sort-down' : 'fa-solid fa-sort-up'"></i>
+				</td>
+				<td>Action</td>
+			</tr>
+			<tr th:each="department : ${listOfDepartments}">
+				<td th:text="${department.id}"></td>
+				<td th:text="${department.departmentName}">
+				<td><a
+					th:href="@{/dept/removeDepartment/{id} (id = ${department.id})}">
+						<button>DELETE</button>
+				</a> <a th:href="@{/dept/displayDept/{id} (id = ${department.id})}">
+						<button>UPDATE</button></td>
+				</a>
+			</tr>
+		</table>
+		<h1>
+			Total No. of Pages = <span th:text="${noOfPage}"></span>
+		</h1>
+		<nav aria-label="...">
+			<ul class="pagination pagination-lg">
+				<li class="page-item active" aria-current="page"
+					th:each="index : ${#numbers.sequence(1, noOfPage)}"><a
+					th:href="@{/dept/page/{pageNum}/{columnName}/{direction} 
+					(pageNum = ${index}, columnName = ${columnName}, direction = ${direction})}"> <span
+						class="page-link" th:text="${index}"></span>
+				</a></li>
+			</ul>
+		</nav>
+	</center>
+</body>
+</html>
+
+
+
+

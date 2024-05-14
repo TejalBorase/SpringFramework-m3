@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Department</title>
+</head>
+<body>
+			<center>
+			<form action="/dept/updateDepartment">
+				<h1>Update Department</h1>
+				<hr>
+				
+				<label>ENTER DEPARTMENT NAME</label>
+				<input th:value="${dept.departmentName}"name = "departmentName">
+				<br><br>
+				
+				<input hidden th:value="${dept.id}" name="id">
+				
+				<input type="submit" value="UPDATE">
+			</form>
+			</center>
+</body>
+</html>
